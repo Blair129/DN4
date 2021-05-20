@@ -211,6 +211,7 @@ class ImgtoClass_Metric(nn.Module):
 			query_sam = input1[i]
 			query_sam = query_sam.view(C, -1)
 			query_sam = torch.transpose(query_sam, 0, 1)
+			print(query_sam.shape)
 			query_sam_norm = torch.norm(query_sam, 2, 1, True)   
 			query_sam = query_sam/query_sam_norm
 
@@ -219,6 +220,7 @@ class ImgtoClass_Metric(nn.Module):
 
 			for j in range(len(input2)):
 				support_set_sam = input2[j]
+				print(support_set_sam.shape)
 				support_set_sam_norm = torch.norm(support_set_sam, 2, 0, True)
 				support_set_sam = support_set_sam/support_set_sam_norm
 
