@@ -123,6 +123,7 @@ def validate(val_loader, model, criterion, epoch_index, F_txt):
 
 		# Calculate the output 
 		output = model(input_var1, input_var2)
+		print("ouput:   "+ str(output.shape))
 		loss = criterion(output, target)
 
 
