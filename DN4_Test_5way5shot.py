@@ -183,11 +183,15 @@ class AverageMeter(object):
 def accuracy(output, target, topk=(1,)):
 	"""Computes the precision@k for the specified values of k"""
 	with torch.no_grad():
+		print(topk)
 		maxk = max(topk)
+		print(maxk)
 		batch_size = target.size(0)
 
 		_, pred = output.topk(maxk, 1, True, True)
+		print(pred)
 		pred = pred.t()
+		
 		correct = pred.eq(target.view(1, -1).expand_as(pred))
 
 		res = []
