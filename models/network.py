@@ -238,7 +238,8 @@ class ImgtoClass_Metric(nn.Module):
 
 			Similarity_list.append(inner_sim)
 
-		Similarity_list = torch.cat(Similarity_list, 0)    
+		Similarity_list = torch.cat(Similarity_list, 0)
+		print(Similarity_list.shape)
 
 		return Similarity_list 
 
