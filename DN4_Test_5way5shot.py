@@ -103,9 +103,8 @@ def validate(val_loader, model, criterion, epoch_index, F_txt):
 
 	end = time.time()
 	for episode_index, (query_images, query_targets, support_images, support_targets) in enumerate(val_loader):
-		print(type(support_images))
-		print(type(support_images[0]))
-		print(support_images[0])
+		print(len(support_images))
+
 
 		# Convert query and support images
 		query_images = torch.cat(query_images, 0)
@@ -115,6 +114,7 @@ def validate(val_loader, model, criterion, epoch_index, F_txt):
 		input_var2 = []
 		for i in range(len(support_images)):
 			temp_support = support_images[i]
+			print(type(temp_support))
 			temp_support = torch.cat(temp_support, 0)
 			temp_support = temp_support.cuda()
 			input_var2.append(temp_support)
