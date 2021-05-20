@@ -188,7 +188,7 @@ class FourLayer_64F(nn.Module):
 			support_set_sam = support_set_sam.contiguous().view(C, -1)
 			S.append(support_set_sam)
 		
-		print(len(S))
+		print("-----------------"+str(len(S)))
 		x = self.imgtoclass(q, S) # get Batch*num_classes
 
 		return x
