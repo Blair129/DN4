@@ -112,8 +112,8 @@ class Imagefolder_csv(object):
 
 
 					# the dir of support set
-					query_dir = [path.join(data_dir, 'images', i) for i in query_imgs]
-					support_dir = [path.join(data_dir, 'images', i) for i in support_imgs]
+					query_dir = [path.join(data_dir, i) for i in query_imgs]
+					support_dir = [path.join(data_dir, i) for i in support_imgs]
 
 
 					data_files = {
@@ -165,8 +165,8 @@ class Imagefolder_csv(object):
 
 
 					# the dir of support set
-					query_dir = [path.join(data_dir, 'images', i) for i in query_imgs]
-					support_dir = [path.join(data_dir, 'images', i) for i in support_imgs]
+					query_dir = [path.join(data_dir, i) for i in query_imgs]
+					support_dir = [path.join(data_dir, i) for i in support_imgs]
 
 
 					data_files = {
@@ -215,8 +215,8 @@ class Imagefolder_csv(object):
 
 
 					# the dir of support set
-					query_dir = [path.join(data_dir, 'images', i) for i in query_imgs]
-					support_dir = [path.join(data_dir, 'images', i) for i in support_imgs]
+					query_dir = [path.join(data_dir, i) for i in query_imgs]
+					support_dir = [path.join(data_dir, i) for i in support_imgs]
 
 
 					data_files = {
