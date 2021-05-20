@@ -183,6 +183,7 @@ class FourLayer_64F(nn.Module):
 		S = []
 		for i in range(len(input2)):
 			support_set_sam = self.features(input2[i])
+			print(support_set_sam.shape)
 			B, C, h, w = support_set_sam.size()
 			support_set_sam = support_set_sam.permute(1, 0, 2, 3)
 			support_set_sam = support_set_sam.contiguous().view(C, -1)
