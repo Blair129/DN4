@@ -67,7 +67,7 @@ parser.add_argument('--epochs', type=int, default=30, help='the total number of 
 parser.add_argument('--episode_train_num', type=int, default=10000, help='the total number of training episodes')
 parser.add_argument('--episode_val_num', type=int, default=1000, help='the total number of evaluation episodes')
 parser.add_argument('--episode_test_num', type=int, default=1000, help='the total number of testing episodes')
-parser.add_argument('--way_num', type=int, default=5, help='the number of way/class')
+parser.add_argument('--way_num', type=int, default=3, help='the number of way/class')
 parser.add_argument('--shot_num', type=int, default=5, help='the number of shot')
 parser.add_argument('--query_num', type=int, default=10, help='the number of queries')
 parser.add_argument('--neighbor_k', type=int, default=3, help='the number of k-nearest neighbors')
@@ -267,7 +267,7 @@ def accuracy(output, target, topk=(1,)):
 
 		res = []
 		for k in topk:
-			correct_k = correct[:k].view(-1).float().sum(0, keepdim=True)
+			correct_k = correct[:k].reshape(-1).float().sum(0, keepdim=True)
 			res.append(correct_k.mul_(100.0 / batch_size))
 		return res
 
