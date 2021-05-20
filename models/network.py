@@ -177,19 +177,19 @@ class FourLayer_64F(nn.Module):
 
 		# extract features of input1--query image
 		q = self.features(input1)
-		print(q.shape)
+		# print(q.shape)
 
 		# extract features of input2--support set
 		S = []
 		for i in range(len(input2)):
 			support_set_sam = self.features(input2[i])
-			print(support_set_sam.shape)
+			# print(support_set_sam.shape)
 			B, C, h, w = support_set_sam.size()
 			support_set_sam = support_set_sam.permute(1, 0, 2, 3)
 			support_set_sam = support_set_sam.contiguous().view(C, -1)
 			S.append(support_set_sam)
 		
-		print("-----------------"+str(len(S)))
+		# print("-----------------"+str(len(S)))
 		x = self.imgtoclass(q, S) # get Batch*num_classes
 
 		return x
@@ -214,7 +214,7 @@ class ImgtoClass_Metric(nn.Module):
 			query_sam = input1[i]
 			query_sam = query_sam.view(C, -1)
 			query_sam = torch.transpose(query_sam, 0, 1)
-			print(query_sam.shape)
+			# print(query_sam.shape)
 			query_sam_norm = torch.norm(query_sam, 2, 1, True)   
 			query_sam = query_sam/query_sam_norm
 
@@ -224,13 +224,13 @@ class ImgtoClass_Metric(nn.Module):
 
 			for j in range(len(input2)):
 				support_set_sam = input2[j]
-				print(support_set_sam.shape)
+				# print(support_set_sam.shape)
 				support_set_sam_norm = torch.norm(support_set_sam, 2, 0, True)
 				support_set_sam = support_set_sam/support_set_sam_norm
 
 				# cosine similarity between a query sample and a support category
 				innerproduct_matrix = query_sam@support_set_sam
-				print("innerproduct"+str(innerproduct_matrix.shape))
+				# print("innerproduct"+str(innerproduct_matrix.shape))
 
 				# choose the top-k nearest neighbors
 				topk_value, topk_index = torch.topk(innerproduct_matrix, self.neighbor_k, 1)
@@ -239,7 +239,7 @@ class ImgtoClass_Metric(nn.Module):
 			Similarity_list.append(inner_sim)
 
 		Similarity_list = torch.cat(Similarity_list, 0)
-		print(Similarity_list.shape)
+		# print(Similarity_list.shape)
 
 		return Similarity_list 
 
