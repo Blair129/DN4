@@ -104,7 +104,7 @@ def validate(val_loader, model, criterion, epoch_index, F_txt):
 	end = time.time()
 	for episode_index, (query_images, query_targets, support_images, support_targets) in enumerate(val_loader):
 		print(type(support_images))
-		print(type(support_images[0])
+		print(type(support_images[0]))
 		print(support_images[0])
 
 		# Convert query and support images
