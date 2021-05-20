@@ -177,6 +177,7 @@ class FourLayer_64F(nn.Module):
 
 		# extract features of input1--query image
 		q = self.features(input1)
+		print(q.shape)
 
 		# extract features of input2--support set
 		S = []
@@ -186,7 +187,8 @@ class FourLayer_64F(nn.Module):
 			support_set_sam = support_set_sam.permute(1, 0, 2, 3)
 			support_set_sam = support_set_sam.contiguous().view(C, -1)
 			S.append(support_set_sam)
-
+		
+		print(len(S))
 		x = self.imgtoclass(q, S) # get Batch*num_classes
 
 		return x
@@ -217,6 +219,7 @@ class ImgtoClass_Metric(nn.Module):
 
 			if torch.cuda.is_available():
 				inner_sim = torch.zeros(1, len(input2)).cuda()
+				print("inner_sim"+str(inner_sim.shape))
 
 			for j in range(len(input2)):
 				support_set_sam = input2[j]
@@ -226,6 +229,7 @@ class ImgtoClass_Metric(nn.Module):
 
 				# cosine similarity between a query sample and a support category
 				innerproduct_matrix = query_sam@support_set_sam
+				print("innerproduct"+str(innerproduct.shape))
 
 				# choose the top-k nearest neighbors
 				topk_value, topk_index = torch.topk(innerproduct_matrix, self.neighbor_k, 1)
